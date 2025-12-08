@@ -1,10 +1,14 @@
 public class Member {
-    // private String userID;
+    protected String userID;
     private String name;
     private String email;
     private String phoneNumber;
     private String password;
     // public String totalPoints;
+
+    public Member(String userID) {
+        this.userID = userID;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -21,6 +25,7 @@ public class Member {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public String getName() {
         return this.name;
@@ -40,10 +45,17 @@ public class Member {
 
 
     public void DisplayMember(){
+        System.out.println("User ID : " + this.userID);
         System.out.println("Name : " + this.name);
         System.out.println("Email : " + this.email);
         System.out.println("Phone Number : " + this.phoneNumber);
         System.out.println("Password : " + this.password);
     }
+
+    public void registerAccount() {
+
+    }
+
+    
 
 }
