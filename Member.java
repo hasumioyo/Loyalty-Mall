@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Member {
     protected String userID;
     private String name;
@@ -5,6 +8,9 @@ public class Member {
     private String phoneNumber;
     private String password;
     // public String totalPoints;
+
+    Scanner sc = new Scanner(System.in);
+    private ArrayList<String> regis = new ArrayList<>();
 
     public Member(String userID) {
         this.userID = userID;
@@ -52,10 +58,32 @@ public class Member {
         System.out.println("Password : " + this.password);
     }
 
-    public void registerAccount() {
+    public void registerAccount(String userID, String name, String email, String phoneNumber, String password) {
+        // System.out.println("Insert Name         : ");
+        // String a = sc.nextLine();
+        // System.out.println("Insert email        : ");
+        // String b = sc.nextLine();
+        // System.out.println("Insert phone number : ");
+        // String c = sc.nextLine();
+        // System.out.println("Insert Password     : ");
+        // String d = sc.nextLine();
+        regis.add(userID);
+        regis.add(name);
+        regis.add(email);
+        regis.add(phoneNumber);
+        regis.add(password);
+        System.out.println(regis);
+        System.out.println("Register Success!");
 
     }
 
-    
+    // public void loginAccount(String userID, String password) {
+    //     for (String s : regis) {
+    //         if(s.userID.equals(userID)) {
+    //             System.out.println("Login Succesful");
+    //         }
+    //     }
+        
+    // }
 
 }
