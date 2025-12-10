@@ -3,18 +3,17 @@ import java.util.Scanner;
 
 public class Member {
     protected String userID;
-    private String name;
+    public String name;
     private String email;
     private String phoneNumber;
     private String password;
+    private int balancePoints;
+    private Transaction transaction;
+
     // public String totalPoints;
 
     Scanner sc = new Scanner(System.in);
     private ArrayList<String> regis = new ArrayList<>();
-
-    public Member(String userID) {
-        this.userID = userID;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -32,33 +31,24 @@ public class Member {
         this.password = password;
     }
 
-
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public String getphoneNumber() {
-        return this.phoneNumber;
+        return phoneNumber;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
 
-    public void DisplayMember(){
-        System.out.println("User ID : " + this.userID);
-        System.out.println("Name : " + this.name);
-        System.out.println("Email : " + this.email);
-        System.out.println("Phone Number : " + this.phoneNumber);
-        System.out.println("Password : " + this.password);
-    }
-
-    public void registerAccount(String userID, String name, String email, String phoneNumber, String password) {
+    public void registerAccount(String name, String email, String phoneNumber, String password) {
         // System.out.println("Insert Name         : ");
         // String a = sc.nextLine();
         // System.out.println("Insert email        : ");
@@ -67,16 +57,27 @@ public class Member {
         // String c = sc.nextLine();
         // System.out.println("Insert Password     : ");
         // String d = sc.nextLine();
-        regis.add(userID);
-        regis.add(name);
-        regis.add(email);
-        regis.add(phoneNumber);
-        regis.add(password);
-        System.out.println(regis);
-        System.out.println("Register Success!");
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
 
+        regis.clear();
+        regis.add(name);
+        regis.add(phoneNumber);
+        regis.add(email);
+        regis.add(password);
+
+        System.out.println("Register Success!");
     }
 
+    public void DisplayMember() {
+        System.out.println("Name : " + name);
+        System.out.println("Phone Number : " + phoneNumber);
+        System.out.println("Email : " + email);
+        System.out.println("Password : " + password);
+    }
+    
     // public void loginAccount(String userID, String password) {
     //     for (String s : regis) {
     //         if(s.userID.equals(userID)) {

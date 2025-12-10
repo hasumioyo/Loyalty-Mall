@@ -11,8 +11,8 @@ public class Trial {
         // m1.setPassword("123456");
 
         // m1.DisplayMember();
-
-        Member m1 = new Member("A001");
+        Member m1 = new Member();
+        
         System.out.println("Options :");
         System.out.println("1. Register Account");
         System.out.println("2. Login Account");
@@ -21,45 +21,46 @@ public class Trial {
         scanner.nextLine(); //menghapus baris supaya bisa input yang lain
 
         if (options == 1) {
-            System.out.println("Insert userID  :");
-            String a = scanner.nextLine();
-
             System.out.println("Insert name :");
-            String b = scanner.nextLine();
-
-            System.out.println("Insert email :");
-            String c = scanner.nextLine();
+            String name = scanner.nextLine();
 
             System.out.println("Insert Phone Number :");
-            String d = scanner.nextLine();
+            String phoneNumber = scanner.nextLine();
+
+            System.out.println("Insert email :");
+            String email = scanner.nextLine();
 
             System.out.println("Insert Password : ");
-            String e = scanner.nextLine();
+            String password = scanner.nextLine();
 
+            m1.registerAccount(name,phoneNumber,email,password);
+            
             // m1.setName("Angelina");
             // m1.setEmail("angelinawijaya82@gmail.com");
             // m1.setphoneNumber("081249717382");
             // m1.setPassword("123456");
 
             // m1.DisplayMember();
-            m1.registerAccount(a,b,c,d,e);
         }
 
         else if(options == 2) {
-            System.out.println("Insert userID   :");
-            String a = scanner.nextLine();
+            System.out.println("Insert Email    :");
+            String email = scanner.nextLine();
 
             System.out.println("Insert Password :");
-            String b = scanner.nextLine();
+            String password = scanner.nextLine();
 
             // if (m1.regis(a,b)) {
             //      System.out.println("Login berhasil!");
             // }
 
-            // m1.loginAccount(a,b);   
-
+            // m1.loginAccount(a,b);
         }
-
         
+        Transaction t1 = new Transaction("T001", 200000, m1);
+        Transaction t2 = new Transaction("T002", 222000, m1);
+        
+        t1.infoTransaction();
+        t2.infoTransaction();
     }
 }
