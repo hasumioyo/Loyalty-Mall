@@ -7,8 +7,16 @@ public class Member {
     private String email;
     private String phoneNumber;
     private String password;
-    private int balancePoints;
     private Transaction transaction;
+    private int balancePoints = 0;
+
+    public void addPoints(int points) {
+        this.balancePoints += points;
+    }
+
+    public int getBalancePoints() {
+        return balancePoints;
+    }
 
     // public String totalPoints;
 
@@ -48,7 +56,7 @@ public class Member {
     }
 
 
-    public void registerAccount(String name, String email, String phoneNumber, String password) {
+    public void registerAccount(String name, String phoneNumber, String email, String password) {
         // System.out.println("Insert Name         : ");
         // String a = sc.nextLine();
         // System.out.println("Insert email        : ");
@@ -75,9 +83,10 @@ public class Member {
         System.out.println("Name : " + name);
         System.out.println("Phone Number : " + phoneNumber);
         System.out.println("Email : " + email);
-        System.out.println("Password : " + password);
+        System.out.println("Balance Points : " + balancePoints);
+        System.out.println();
     }
-    
+
     // public void loginAccount(String userID, String password) {
     //     for (String s : regis) {
     //         if(s.userID.equals(userID)) {

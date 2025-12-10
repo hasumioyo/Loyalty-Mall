@@ -14,6 +14,8 @@ public class Transaction {
         this.member = member;
 
         this.pointsEarned = calculatePoints();
+
+        member.addPoints(pointsEarned);
     }
 
     public String getTransactionID() {
@@ -61,5 +63,6 @@ public class Transaction {
         System.out.println("Date       : " + date);
         System.out.println("Expenditure: " + totalExpenditure);
         System.out.println("Points     : " + pointsEarned);
+        System.out.println();
     }
 }
