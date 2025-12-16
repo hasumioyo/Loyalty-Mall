@@ -71,6 +71,10 @@ public class Member {
         System.out.println("Register Success!");
     }
 
+    public boolean regis(String email, String password) {
+        
+    }
+
     public void DisplayMember() {
         System.out.println("Name : " + name);
         System.out.println("Phone Number : " + phoneNumber);
@@ -86,5 +90,3 @@ public class Member {
     //     }
         
     }
-
-}

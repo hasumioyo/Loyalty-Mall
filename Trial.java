@@ -18,7 +18,7 @@ public class Trial {
         System.out.println("2. Login Account");
         System.out.println("Select Options: ");
         int options = scanner.nextInt();
-        scanner.nextLine(); //menghapus baris supaya bisa input yang lain
+        scanner.nextLine(); 
 
         if (options == 1) {
             System.out.println("Insert name :");
@@ -50,7 +50,7 @@ public class Trial {
             System.out.println("Insert Password :");
             String password = scanner.nextLine();
 
-            if (m1.regis(a,b)) {
+            if (m1.regis(email,password)) {
                  System.out.println("Login berhasil!");
             }
 
