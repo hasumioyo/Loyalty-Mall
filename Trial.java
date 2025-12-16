@@ -62,5 +62,7 @@ public class Trial {
         
         t1.infoTransaction();
         t2.infoTransaction();
+
+        m1.DisplayMember();
     }
 }
