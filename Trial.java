@@ -50,9 +50,9 @@ public class Trial {
             System.out.println("Insert Password :");
             String password = scanner.nextLine();
 
-            // if (m1.regis(a,b)) {
-            //      System.out.println("Login berhasil!");
-            // }
+            if (m1.regis(a,b)) {
+                 System.out.println("Login berhasil!");
+            }
 
             // m1.loginAccount(a,b);
         }
