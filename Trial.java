@@ -2,18 +2,13 @@ import java.util.Scanner;
 import java.util.Date;
 
 public class Trial {
-
-    
     public static void main(String[] args) {
         main();
-        // Transaction t1 = new Transaction("T001", 200000, m1);
-        // Transaction t2 = new Transaction("T002", 222000, m1);
         
-        // t1.infoTransaction();
-        // t2.infoTransaction();
 
         // m1.DisplayMember();
     }
+
     static void main() {
         int options;
         Scanner scanner = new Scanner(System.in);
@@ -56,8 +51,8 @@ public class Trial {
                     // m1.setphoneNumber("081249717382");
                     // m1.setPassword("123456");
 
-                    // m1.DisplayMember();
-                }
+                    m1.DisplayMember();
+            }
 
             else if(options == 2) {
                 System.out.println("Insert Email    :");
@@ -75,7 +70,7 @@ public class Trial {
                 }
 
                     // m1.loginAccount(a,b);
-                }
+            }
 
             else if (options == 3) {
                     // System.out.println("Service ID      :");
@@ -94,17 +89,21 @@ public class Trial {
                     cs.displayService();
                 }
             else if (options == 4) {
+            Transaction t1 = new Transaction("T001", 200000, m1);
+            Transaction t2 = new Transaction("T002", 222000, m1);
+        
+            t1.infoTransaction();
+            t2.infoTransaction();
+                System.out.println("Your Balance Points: " + m1.getBalancePoints());
                     System.out.println("Exchange points :");
                     int enterredeem = scanner.nextInt();
 
                     Date dateRedeem = new Date();
 
-                    Redeem rd = new Redeem("R001", enterredeem, dateRedeem, "RW001", m1);
-                    rd.redeemProcess();
-                    rd.displayRedeem();
 
             }
-        } while (options != 4);
+        } while (options != 5);
+
         
     }
 }

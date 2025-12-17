@@ -11,13 +11,16 @@ public class Reward {
         this.requiredPoints = requiredPoints;
     }
 
+    public int getRequiredPoints() {
+        return requiredPoints;
+    }
+
     public void redeemReward() {
         System.out.println("Redeem on process..");
 
         if(member.deductPoints(requiredPoints)) {
             
         }
-
     }
 
 

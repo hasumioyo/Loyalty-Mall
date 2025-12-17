@@ -10,10 +10,12 @@ public class Member {
     // private Transaction transaction;
     private int balancePoints = 0;
 
+    // Transaction
     public void addPoints(int points) {
         this.balancePoints += points;
     }
 
+    // Redeem
     public int getBalancePoints() {
         return balancePoints;
     }
@@ -60,9 +62,9 @@ public class Member {
         return phoneNumber;
     }
 
-    // public String getPassword() {
-    //     return password;
-    // }
+    public String getPassword() {
+        return password;
+    }
 
 
     public void registerAccount(String name, String phoneNumber, String email, String password) {
@@ -114,4 +116,4 @@ public class Member {
 
     
         
-    }
+}
