@@ -18,8 +18,7 @@ public class CustomerService {
     }
 
     public void createRequest() {
-        this.status = "Processing..";
-        System.out.println("The service is on process");
+        System.out.println("The service is on process..");
     }
 
     public void updateStatus(String status) {
@@ -28,10 +27,10 @@ public class CustomerService {
 
     public void displayService() {
         System.out.println("=== Customer Service Info ===");
-        System.out.println("Service ID      :" + serviceID);
+        System.out.println("Service ID      : " + serviceID);
         System.out.println("Member          : " + member.getName());
         System.out.println("Date            : " + dateService);
-        System.out.println("Status          :" + status);
+        System.out.println("Status          : " + status);
         System.out.println("Description     : " + description);
 
     }

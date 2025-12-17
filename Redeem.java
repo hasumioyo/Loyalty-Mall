@@ -8,7 +8,7 @@ public class Redeem {
     private Member member;
     // private Transaction transaction;
 
-    public Redeem(String redeemID, int redeemPoints, String rewardID, Member member) {
+    public Redeem(String redeemID, int redeemPoints, Date dateRedeem, String rewardID, Member member) {
         this.redeemID = redeemID;
         this.redeemPoints = redeemPoints;
         this.dateRedeem = new Date();

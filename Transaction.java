@@ -56,7 +56,6 @@ public class Transaction {
         return rounded;
     }
 
-    
 
     public void infoTransaction() {
         System.out.println("=== Transaction Info ===");
