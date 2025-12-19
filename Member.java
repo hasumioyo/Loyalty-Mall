@@ -1,119 +1,166 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Member {
-    protected String userID;
-    public String name;
-    private String email;
+    private String name;
     private String phoneNumber;
+    private String email;
     private String password;
-    // private Transaction transaction;
     private int balancePoints = 0;
+    private ArrayList<Transaction> transactions = new ArrayList<>();
+    private ArrayList<Redeem> redeems = new ArrayList<>();
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
-    // Transaction
-    public void addPoints(int points) {
-        this.balancePoints += points;
-    }
-
-    // Redeem
-    public int getBalancePoints() {
-        return balancePoints;
-    }
-
-    public boolean deductPoints(int points) {
-        if(this.balancePoints >= points) {
-            this.balancePoints -= points;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // public String totalPoints;
-
-    Scanner sc = new Scanner(System.in);
-    private ArrayList<String[]> regis = new ArrayList<>();
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // public void setEmail(String email) {
-    //     this.email = email;
-    // }
-
-    public void setphoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    // public void setPassword(String password) {
-    //     this.password = password;
-    // }
-
-    public String getName() {
-        return name;
-    }
-
-    // public String getEmail() {
-    //     return email;
-    // }
-
-    public String getphoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-
-    public void registerAccount(String name, String phoneNumber, String email, String password) {
-        // // System.out.println("Insert Name         : ");
-        // // String a = sc.nextLine();
-        // // System.out.println("Insert email        : ");
-        // // String b = sc.nextLine();
-        // // System.out.println("Insert phone number : ");
-        // // String c = sc.nextLine();
-        // // System.out.println("Insert Password     : ");
-        // // String d = sc.nextLine();
-        // this.name = name;
-        // this.phoneNumber = phoneNumber;
-        // this.email = email;
-        // this.password = password;
-        // regis.clear();
-        // regis.add(name);
-        // regis.add(phoneNumber);
-        // regis.add(email);
-        // regis.add(password);
+    public Member(String name, String phoneNumber, String email, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        
-        regis.add(new String[]{name, phoneNumber, email, password});
-        System.out.println("Register Success!");
     }
 
-    public boolean login(String email, String password) {
-        for (String[] search : regis) {
-            if (search[2].equals(email) && search[3].equals(password)){
-            System.out.println("Login successful");
-            return true;
-        } 
+    // REGISTER
+    public static Member register(Scanner scanner, ArrayList<Member> members) {
+        System.out.print("Insert name: ");
+        String name = scanner.nextLine();
+        System.out.print("Insert phone number: ");
+        String phone = scanner.nextLine();
+        System.out.print("Insert email: ");
+        String email = scanner.nextLine();
+
+        for (Member m : members) {
+            if (m.email.equalsIgnoreCase(email)) {
+                System.out.println("Email Already Registered!");
+                return null;
+            }
         }
-        System.out.println("Login failed");
-        return false;
-    
+
+        System.out.print("Insert password: ");
+        String password = scanner.nextLine();
+
+        Member m = new Member(name, phone, email, password);
+        members.add(m);
+        System.out.println("Register Success!");
+        return m;
     }
 
-    public void DisplayMember() {
-        System.out.println("Name : " + name);
-        System.out.println("Phone Number : " + phoneNumber);
-        System.out.println("Email : " + email);
-        System.out.println("Balance Points : " + balancePoints);
-        System.out.println();
+    // LOGIN
+    public static Member login(Scanner scanner, ArrayList<Member> members) {
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        for (Member m : members) {
+            if (m.email.equalsIgnoreCase(email) &&
+                m.password.equals(password)) {
+                System.out.println("Login Success!");
+                return m;
+            }
+        }
+        System.out.println("Incorrect Email or Password!");
+        return null;
     }
 
-    
-        
+    // MEMBER MENU
+    public void loggedInMenu(Scanner scanner, ArrayList<Reward> rewards) {
+        int option;
+        do {
+            System.out.println("\n===== MEMBER PROFILE =====");
+            System.out.println("Name   : " + name);
+            System.out.println("Email  : " + email);
+            System.out.println("Points : " + balancePoints);
+
+            System.out.println("===== MEMBER MENU =====");
+            System.out.println("1. Transaction");
+            System.out.println("2. Redeem");
+            System.out.println("3. Notification");
+            System.out.println("4. Customer Service");
+            System.out.println("0. Logout");
+            System.out.print("Choose: ");
+            option = scanner.nextInt();
+            scanner.nextLine();
+
+            if (option == 1) {
+                Transaction.transactionMenu(scanner, this);
+            } 
+            
+            else if (option == 2) {
+                Redeem.redeemMenu(scanner, this, rewards);
+            }
+            
+            else if (option == 3) {
+                showNotifications();
+            }
+
+            else if(option == 4) { 
+                System.out.println("=== CUSTOMER SERVICE ===");
+                CustomerService.customerServiceMenu(scanner, this);
+            }
+        } while (option != 0);
+        System.out.println("Logout Success.");
+    }
+
+    // MEMBER DATA
+    public String getName() {
+        return name;
+    }
+
+    public int getBalancePoints() {
+        return balancePoints;
+    }
+
+    public void addPoints(int points) {
+        balancePoints += points;
+    }
+
+    public void deductPoints(int points) {
+        balancePoints -= points;
+    }
+
+    public void addTransaction(Transaction t) {
+        transactions.add(t);
+    }
+
+    public void showRecentTransactions(int limit) {
+        if(transactions.isEmpty()) {
+            System.out.println("No transactions yet.");
+            return;
+        }
+
+        System.out.println("\n=== TRANSACTION HISTORY ===");
+        int start = Math.max(0, transactions.size() - limit);
+        for(int i=start; i<transactions.size(); i++) {
+            transactions.get(i).infoTransaction();
+        }
+    }
+
+    public void addRedeem(Redeem r) {
+        redeems.add(r);
+    }
+
+    public void showRedeemHistory() {
+        if(redeems.isEmpty()) {
+            System.out.println("No redeem history yet.");
+            return;
+        }
+        System.out.println("\n=== REDEEM HISTORY ===");
+        for(Redeem r : redeems) {
+            r.displayRedeem();
+        }
+    }
+
+    public void addNotification(Notification n) {
+        notifications.add(n);
+    }
+
+    public void showNotifications() {
+        if (notifications.isEmpty()) {
+            System.out.println("No notifications yet.");
+            return;
+        }
+        System.out.println("\n=== NOTIFICATIONS ===");
+        for (Notification n : notifications) {
+            n.sendNotification();
+        }
+    }
 }

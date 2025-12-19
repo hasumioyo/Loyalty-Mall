@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Scanner;
 
 public class Transaction {
     private String transactionID;
@@ -12,58 +13,47 @@ public class Transaction {
         this.date = new Date();
         this.totalExpenditure = totalExpenditure;
         this.member = member;
-
         this.pointsEarned = calculatePoints();
 
         member.addPoints(pointsEarned);
+        member.addTransaction(this);
     }
 
-    public String getTransactionID() {
-        return transactionID;
-    }
+    public static void transactionMenu(Scanner scanner, Member member) {
+        int option;
+        do {
+            System.out.println("\n===== TRANSACTION MENU =====");
+            System.out.println("1. New Transaction");
+            System.out.println("2. Transaction History");
+            System.out.println("0. Back");
+            System.out.print("Choose: ");
+            option = scanner.nextInt();
+            scanner.nextLine();
 
-    public void setTransactionID(String transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public int getTotalExpenditure() {
-        return totalExpenditure;
-    }
-
-    public void setTotalExpenditure(int totalExpenditure) {
-        this.totalExpenditure = totalExpenditure;
-    }
-
-    public int getPointsEarned() {
-        return pointsEarned;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
+            if(option == 1) {
+                System.out.print("Total Expenditure: ");
+                int total = scanner.nextInt();
+                scanner.nextLine();
+                String tId = "T" + System.currentTimeMillis();
+                Transaction t = new Transaction(tId, total, member);
+                System.out.println("Transaction Success!");
+                t.infoTransaction();
+            } 
+            
+            else if(option == 2) {
+                member.showRecentTransactions(4);
+            }
+        } while(option != 0);
     }
 
     public int calculatePoints() {
-        int raw = totalExpenditure / 60; 
-        int rounded = (raw / 100) * 100; 
-        return rounded;
+        return totalExpenditure / 600;
     }
 
-
     public void infoTransaction() {
-        System.out.println("=== Transaction Info ===");
-        System.out.println("ID         : " + transactionID);
-        System.out.println("Member     : " + member.getName());
-        System.out.println("Date       : " + date);
-        System.out.println("Expenditure: " + totalExpenditure);
-        System.out.println("Points     : " + pointsEarned);
-        System.out.println();
+        System.out.println("ID          :" + transactionID);
+        System.out.println("Expenditure :" + totalExpenditure);
+        System.out.println("Points      :" + pointsEarned);
+        System.out.println("Date        :" + date);
     }
 }

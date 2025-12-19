@@ -2,8 +2,6 @@ public class Reward {
     private String rewardID;
     private String rewardName;
     private int requiredPoints;
-    private Member member;
-
 
     public Reward(String rewardID, String rewardName, int requiredPoints) {
         this.rewardID = rewardID;
@@ -15,14 +13,11 @@ public class Reward {
         return requiredPoints;
     }
 
-    public void redeemReward() {
-        System.out.println("Redeem on process..");
-
-        if(member.deductPoints(requiredPoints)) {
-            
-        }
+    public String getRewardName() {
+        return rewardName;
     }
 
-
-
+    public void displayReward() {
+        System.out.println(rewardID + " | " + rewardName + " | Points: " + requiredPoints);
+    }
 }

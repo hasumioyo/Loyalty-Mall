@@ -7,7 +7,6 @@ public class Notification {
     private String type;
     private Date dateNotification;
 
-    
     public Notification(String notificationID, String title, String message, String type) {
         this.notificationID = notificationID;
         this.title = title;
@@ -16,7 +15,6 @@ public class Notification {
         this.dateNotification = new Date();
     }
 
-    
     public String getNotificationID() {
         return notificationID;
     }
@@ -56,15 +54,13 @@ public class Notification {
     public void setDateNotification(Date dateNotification) {
         this.dateNotification = dateNotification;
     }
-
     
     public void sendNotification() {
-        System.out.println("====== Notification ======");
         System.out.println("ID         : " + notificationID);
         System.out.println("Title      : " + title);
         System.out.println("Type       : " + type);
         System.out.println("Message    : " + message);
         System.out.println("Date       : " + dateNotification);
-        System.out.println("==========================");
+        System.out.println("--------------------------");
     }
 }

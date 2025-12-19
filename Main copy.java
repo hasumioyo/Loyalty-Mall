@@ -1,17 +1,22 @@
 import java.util.Scanner;
 import java.util.Date;
 
-public class Trial {
+public class Main {
     public static void main(String[] args) {
-        main();
+        Scanner scanner = new Scanner(System.in);
         
+        int auth;
+        do {
+            System.out.println("Opsions: ");
+            System.out.println("1. Register Account");
+            System.out.println("2. Login Account");
+        }
 
         // m1.DisplayMember();
     }
 
     static void main() {
         int options;
-        Scanner scanner = new Scanner(System.in);
         // Member m1 = new Member("A001");
         // m1.setName("Angelina");
         // m1.setEmail("angelinawijaya82@gmail.com");
@@ -24,8 +29,6 @@ public class Trial {
 
         do {
             System.out.println("Options :");
-            System.out.println("1. Register Account");
-            System.out.println("2. Login Account");
             System.out.println("3. Customer Service");
             System.out.println("4. Redeem Points");
             System.out.println("Select Options: ");
